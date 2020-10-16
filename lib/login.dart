@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
-class SignUp extends StatelessWidget {
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -9,10 +8,10 @@ class SignUp extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "Sign up to",
+          "Welcome to",
           style: TextStyle(
             fontSize: 16,
-            color: Color(0xFFF3D657),
+            color: Color(0xFF1C1C1C),
             height: 2,
           ),
         ),
@@ -21,8 +20,16 @@ class SignUp extends StatelessWidget {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: Color(0xFFF3D657),
+            color: Color(0xFF1C1C1C),
             letterSpacing: 2,
+            height: 1,
+          ),
+        ),
+        Text(
+          "Please login to continue",
+          style: TextStyle(
+            fontSize: 16,
+            color: Color(0xFF1C1C1C),
             height: 1,
           ),
         ),
@@ -31,10 +38,10 @@ class SignUp extends StatelessWidget {
         ),
         TextField(
           decoration: InputDecoration(
-            hintText: 'Enter Email / Username',
+            hintText: 'Email / Username',
             hintStyle: TextStyle(
               fontSize: 16,
-              color: Color(0xFF3F3C31),
+              color: Color(0xFFD9BC43),
               fontWeight: FontWeight.bold,
             ),
             border: OutlineInputBorder(
@@ -45,7 +52,7 @@ class SignUp extends StatelessWidget {
               ),
             ),
             filled: true,
-            fillColor: Colors.grey.withOpacity(0.1),
+            fillColor: Color(0xFFECCB45),
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
           ),
         ),
@@ -57,7 +64,7 @@ class SignUp extends StatelessWidget {
             hintText: 'Password',
             hintStyle: TextStyle(
               fontSize: 16,
-              color: Color(0xFF3F3C31),
+              color: Color(0xFFD9BC43),
               fontWeight: FontWeight.bold,
             ),
             border: OutlineInputBorder(
@@ -68,7 +75,7 @@ class SignUp extends StatelessWidget {
               ),
             ),
             filled: true,
-            fillColor: Colors.grey.withOpacity(0.1),
+            fillColor: Color(0xFFECCB45),
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
           ),
         ),
@@ -78,13 +85,13 @@ class SignUp extends StatelessWidget {
         Container(
           height: 40,
           decoration: BoxDecoration(
-            color: Color(0xFFF3D657),
+            color: Color(0xFF1C1C1C),
             borderRadius: BorderRadius.all(
               Radius.circular(25),
             ),
             boxShadow: [
               BoxShadow(
-                color: Color(0xFFF3D657).withOpacity(0.2),
+                color: Color(0xFF1C1C1C).withOpacity(0.2),
                 spreadRadius: 3,
                 blurRadius: 4,
                 offset: Offset(0, 3),
@@ -93,48 +100,27 @@ class SignUp extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "SIGN UP",
+              "LOGIN",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1C1C1C),
+                color: Color(0xFFF3D657),
               ),
             ),
           ),
         ),
         SizedBox(
-          height: 24,
+          height: 16,
         ),
         Text(
-          "Or Signup with",
-          textAlign: TextAlign.center,
+          "FORGOT PASSWORD?",
           style: TextStyle(
-            fontSize: 16,
-            color: Color(0xFFF3D657),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF1C1C1C),
             height: 1,
           ),
         ),
-        SizedBox(
-          height: 16,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(
-              Entypo.facebook_with_circle,
-              size: 32,
-              color: Color(0xFFF3D657),
-            ),
-            SizedBox(
-              width: 24,
-            ),
-            Icon(
-              Entypo.google__with_circle,
-              size: 32,
-              color: Color(0xFFF3D657),
-            ),
-          ],
-        )
       ],
     );
   }

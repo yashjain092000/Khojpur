@@ -1,181 +1,134 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'login.dart';
+import 'login_option.dart';
 import 'signup.dart';
+import 'signup_option.dart';
 
-void main() => runApp(new MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.muktaVaaniTextTheme(),
+      ),
       debugShowCheckedModeBanner: false,
-      routes: <String, WidgetBuilder>{
-        '/signup': (BuildContext context) => new SignupPage()
-      },
-      home: new MyHomePage(),
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
+  bool login = true;
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      backgroundColor: Color(0xFF1C1C1C),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                    child: Text('Hello',
-                        style: TextStyle(
-                            fontSize: 80.0, fontWeight: FontWeight.bold)),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  login = true;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                curve: Curves.ease,
+                height: login
+                    ? MediaQuery.of(context).size.height * 0.6
+                    : MediaQuery.of(context).size.height * 0.4,
+                child: CustomPaint(
+                  painter: CurvePainter(login),
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: login ? 0 : 55),
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 32, vertical: 16),
+                          child: login ? Login() : LoginOption(),
+                        ),
+                      ),
+                    ),
                   ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(16.0, 175.0, 0.0, 0.0),
-                    child: Text('There',
-                        style: TextStyle(
-                            fontSize: 80.0, fontWeight: FontWeight.bold)),
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(220.0, 175.0, 0.0, 0.0),
-                    child: Text('.',
-                        style: TextStyle(
-                            fontSize: 80.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green)),
-                  )
-                ],
+                ),
               ),
             ),
-            Container(
-                padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-                child: Column(
-                  children: <Widget>[
-                    TextField(
-                      decoration: InputDecoration(
-                          labelText: 'EMAIL',
-                          labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green))),
-                    ),
-                    SizedBox(height: 20.0),
-                    TextField(
-                      decoration: InputDecoration(
-                          labelText: 'PASSWORD',
-                          labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green))),
-                      obscureText: true,
-                    ),
-                    SizedBox(height: 5.0),
-                    Container(
-                      alignment: Alignment(1.0, 0.0),
-                      padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                      child: InkWell(
-                        child: Text(
-                          'Forgot Password',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                              decoration: TextDecoration.underline),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  login = false;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                curve: Curves.ease,
+                height: login
+                    ? MediaQuery.of(context).size.height * 0.4
+                    : MediaQuery.of(context).size.height * 0.6,
+                child: Container(
+                    color: Colors.transparent,
+                    padding: EdgeInsets.only(top: login ? 55 : 0),
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 32, vertical: 16),
+                          child: !login ? SignUp() : SignUpOption(),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 40.0),
-                    Container(
-                      height: 40.0,
-                      child: Material(
-                        borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.greenAccent,
-                        color: Colors.green,
-                        elevation: 7.0,
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Center(
-                            child: Text(
-                              'LOGIN',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Montserrat'),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20.0),
-                    Container(
-                      height: 40.0,
-                      color: Colors.transparent,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.black,
-                                style: BorderStyle.solid,
-                                width: 1.0),
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20.0)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            // Center(
-                            //   child:
-                            //       ImageIcon(AssetImage('assets/facebook.png')),
-                            // ),
-                            SizedBox(width: 10.0),
-                            Center(
-                              child: Text('Log in with facebook',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat')),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                )),
-            SizedBox(height: 15.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'New to Spotify ?',
-                  style: TextStyle(fontFamily: 'Montserrat'),
-                ),
-                SizedBox(width: 5.0),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/signup');
-                  },
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                        color: Colors.green,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline),
-                  ),
-                )
-              ],
-            )
+                    )),
+              ),
+            ),
           ],
-        ));
+        ),
+      ),
+    );
   }
+}
+
+class CurvePainter extends CustomPainter {
+  bool outterCurve;
+
+  CurvePainter(this.outterCurve);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint();
+    paint.color = Color(0xFFF3D657);
+    paint.style = PaintingStyle.fill;
+
+    Path path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(0, size.height);
+    path.quadraticBezierTo(
+        size.width * 0.5,
+        outterCurve ? size.height + 110 : size.height - 110,
+        size.width,
+        size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
