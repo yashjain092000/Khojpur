@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,47 +36,98 @@ class SignUp extends StatelessWidget {
         SizedBox(
           height: 16,
         ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Enter Email / Username',
-            hintStyle: TextStyle(
-              fontSize: 16,
-              color: Color(0xFF3F3C31),
-              fontWeight: FontWeight.bold,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
+        // TextField(
+        //   decoration: InputDecoration(
+        //     hintText: 'Enter Email / Username',
+        //     hintStyle: TextStyle(
+        //       fontSize: 16,
+        //       color: Color(0xFF3F3C31),
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //     border: OutlineInputBorder(
+        //       borderRadius: BorderRadius.circular(25),
+        //       borderSide: BorderSide(
+        //         width: 0,
+        //         style: BorderStyle.none,
+        //       ),
+        //     ),
+        //     filled: true,
+        //     fillColor: Colors.grey.withOpacity(0.1),
+        //     contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+        //   ),
+        // ),
+        // SizedBox(
+        //   height: 16,
+        // ),
+        // TextField(
+        //   decoration: InputDecoration(
+        //     hintText: 'Enter Username',
+        //     hintStyle: TextStyle(
+        //       fontSize: 16,
+        //       color: Color(0xFF3F3C31),
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //     border: OutlineInputBorder(
+        //       borderRadius: BorderRadius.circular(25),
+        //       borderSide: BorderSide(
+        //         width: 0,
+        //         style: BorderStyle.none,
+        //       ),
+        //     ),
+        //     filled: true,
+        //     fillColor: Colors.grey.withOpacity(0.1),
+        //     contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+        //   ),
+        // ),
+        // SizedBox(
+        //   height: 16,
+        // ),
+        // TextField(
+        //   decoration: InputDecoration(
+        //     hintText: 'Password',
+        //     hintStyle: TextStyle(
+        //       fontSize: 16,
+        //       color: Color(0xFF3F3C31),
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //     border: OutlineInputBorder(
+        //       borderRadius: BorderRadius.circular(25),
+        //       borderSide: BorderSide(
+        //         width: 0,
+        //         style: BorderStyle.none,
+        //       ),
+        //     ),
+        //     filled: true,
+        //     fillColor: Colors.grey.withOpacity(0.1),
+        //     contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+        //   ),
+        // ),
+        Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Enter text',
+                ),
+                textAlign: TextAlign.center,
+                validator: (text) {
+                  if (text == null || text.isEmpty || text.length < 6) {
+                    return "Password shouldn't be empty or is too short";
+                  }
+                  return null;
+                },
               ),
-            ),
-            filled: true,
-            fillColor: Colors.grey.withOpacity(0.1),
-            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-          ),
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Password',
-            hintStyle: TextStyle(
-              fontSize: 16,
-              color: Color(0xFF3F3C31),
-              fontWeight: FontWeight.bold,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
-              ),
-            ),
-            filled: true,
-            fillColor: Colors.grey.withOpacity(0.1),
-            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+              RaisedButton(
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    // TODO submit
+                  }
+                },
+                child: Text('Submit'),
+              )
+            ],
           ),
         ),
         SizedBox(
