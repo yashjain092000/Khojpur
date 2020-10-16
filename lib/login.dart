@@ -11,7 +11,7 @@ class Login extends StatelessWidget {
           "Welcome to",
           style: TextStyle(
             fontSize: 16,
-            color: Color(0xFF1C1C1C),
+            color: Color(0xFF3B5E2B),
             height: 2,
           ),
         ),
@@ -20,7 +20,7 @@ class Login extends StatelessWidget {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF1C1C1C),
+            color: Color(0xFF3B5E2B),
             letterSpacing: 2,
             height: 1,
           ),
@@ -29,7 +29,7 @@ class Login extends StatelessWidget {
           "Please login to continue",
           style: TextStyle(
             fontSize: 16,
-            color: Color(0xFF1C1C1C),
+            color: Color(0xFF3B5E2B),
             height: 1,
           ),
         ),
@@ -85,13 +85,13 @@ class Login extends StatelessWidget {
         Container(
           height: 40,
           decoration: BoxDecoration(
-            color: Color(0xFF1C1C1C),
+            color: Color(0xFF3F6826),
             borderRadius: BorderRadius.all(
               Radius.circular(25),
             ),
             boxShadow: [
               BoxShadow(
-                color: Color(0xFF1C1C1C).withOpacity(0.2),
+                color: Color(0xFF3F6826).withOpacity(0.2),
                 spreadRadius: 3,
                 blurRadius: 4,
                 offset: Offset(0, 3),
@@ -104,7 +104,7 @@ class Login extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFF3D657),
+                color: Color(0xFFECCB45),
               ),
             ),
           ),
@@ -117,7 +117,7 @@ class Login extends StatelessWidget {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF1C1C1C),
+            color: Color(0xFF3F6826),
             height: 1,
           ),
         ),
