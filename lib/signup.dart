@@ -119,6 +119,18 @@ class _SignUpState extends State<SignUp> {
                   return null;
                 },
               ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Enter text',
+                ),
+                textAlign: TextAlign.center,
+                validator: (text) {
+                  if (text == null || text.isEmpty) {
+                    return "Please enter username";
+                  }
+                  return null;
+                },
+              ),
               RaisedButton(
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
