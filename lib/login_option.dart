@@ -11,6 +11,7 @@ class LoginOption extends StatelessWidget {
           "Existing user?",
           style: TextStyle(
             fontSize: 16,
+            color: Color(0xFF3F6826),
           ),
         ),
         SizedBox(
