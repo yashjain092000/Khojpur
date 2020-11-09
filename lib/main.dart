@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+//import 'dashboard.dart';
 import 'login.dart';
 import 'login_option.dart';
 import 'signup.dart';
 import 'signup_option.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,7 +37,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+        //MaterialApp(
+        //   debugShowCheckedModeBanner: false,
+        //   home: StreamBuilder(
+        //       stream: FirebaseAuth.instance.onAuthStateChanged,
+        //       builder: (ctx, userSnapShot) {
+        //         if (userSnapShot.hasData) {
+        //           return Dashboard();
+        //         } else {
+        //           return
+        Scaffold(
       backgroundColor: Color(0xFF3F6826),
       body: SingleChildScrollView(
         child: Column(
@@ -101,6 +113,9 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+    //         }
+    //       }),
+    // );
   }
 }
 
