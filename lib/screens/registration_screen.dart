@@ -2,13 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'chat_screen.dart';
+import 'dashboard.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:Khojpur/constants.dart';
 import 'package:Khojpur/components/rounded_button.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  static const String id = 'registration_screen';
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
