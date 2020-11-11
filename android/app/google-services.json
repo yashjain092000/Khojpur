@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "103990418276",
+    "firebase_url": "https://khojpur-68717.firebaseio.com",
+    "project_id": "khojpur-68717",
+    "storage_bucket": "khojpur-68717.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103990418276:android:39c8023284c169581db871",
+        "android_client_info": {
+          "package_name": "com.example.Khojpur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103990418276-pojqdnm2nubmn0p6a9p95bfhit1un9te.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-SVk1jCObKKu1XKLS3GD5jBri39j__Ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103990418276-pojqdnm2nubmn0p6a9p95bfhit1un9te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
