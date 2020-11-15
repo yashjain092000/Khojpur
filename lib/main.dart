@@ -5,40 +5,38 @@ import 'chat_screen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
-// void main() => runApp(Khojpur());
-
-// class Khojpur extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: StreamBuilder(
-//           stream: FirebaseAuth.instance.onAuthStateChanged,
-//           builder: (ctx, userSnapShot) {
-//             if (userSnapShot.hasData) {
-//               return ChatScreen();
-//             } else {
-//               return AuthScreen();
-//             }
-//           }),
-//     );
-//   }
-// }
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Clean Code',
-        home: AnimatedSplashScreen(
-            duration: 3000,
-            splash: Icons.home,
-            nextScreen: MainScreen(),
-            splashTransition: SplashTransition.fadeTransition,
-            pageTransitionType: PageTransitionType.scale,
-            backgroundColor: Colors.blue));
+      title: 'Khojpur',
+      home: AnimatedSplashScreen(
+          duration: 3000,
+          splash: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    height: 600.0,
+                    width: 600,
+                    child: Image.asset(
+                      'images/logo.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Text("KHOJPUR")
+              ],
+            ),
+          ),
+          nextScreen: MainScreen(),
+          splashTransition: SplashTransition.rotationTransition,
+          pageTransitionType: PageTransitionType.topToBottom,
+          backgroundColor: Colors.yellow[600]),
+    );
   }
 }
 
