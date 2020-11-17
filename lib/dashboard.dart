@@ -111,17 +111,6 @@ class _DashboardPageState extends State<DashboardPage> {
                   _state.openSideMenu();
               },
             ),
-            actions: [
-              IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {
-                    final _state = _endSideMenuKey.currentState;
-                    if (_state.isOpened)
-                      _state.closeSideMenu();
-                    else
-                      _state.openSideMenu();
-                  })
-            ],
             title: Text(widget.title),
           ),
           body: Center(
