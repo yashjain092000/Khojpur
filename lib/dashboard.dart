@@ -60,7 +60,7 @@ class Dashboard extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: DashboardPage(title: 'Liquid Ui Shrink SideMenus'),
+        home: DashboardPage(title: 'Dashboard'),
       ),
     );
   }
