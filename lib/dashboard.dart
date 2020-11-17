@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
-class ChatScreen extends StatelessWidget {
+class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FlutterChat'),
+        title: Text('Khojpur'),
         actions: [
           DropdownButton(
             icon: Icon(

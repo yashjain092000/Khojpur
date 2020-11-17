@@ -36,6 +36,8 @@ dependencies:
   animated_text_kit: ^2.5.4
   animated_splash_screen: ^1.0.1+2
   page_transition: ^1.1.7+2
+  shrink_sidemenu: ^1.0.0+3
+  liquid_ui:
 
 dev_dependencies:
   flutter_test:
