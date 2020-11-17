@@ -55,7 +55,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LiquidApp(
       materialApp: MaterialApp(
-        title: 'Liquid Shrink SideMenu',
+        title: 'Khojpur',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
