@@ -411,26 +411,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
             // padding: EdgeInsets.zero,
           ),
-          LListItem(
-            backgroundColor: Colors.transparent,
-            onTap: () {},
-            leading: Icon(Icons.star_border, size: 20.0, color: Colors.white),
-            title: Text("Favorites"),
-            textColor: Colors.white,
-            dense: true,
-
-            // padding: EdgeInsets.zero,
-          ),
-          LListItem(
-            backgroundColor: Colors.transparent,
-            onTap: () {},
-            leading: Icon(Icons.settings, size: 20.0, color: Colors.white),
-            title: Text("Settings"),
-            textColor: Colors.white,
-            dense: true,
-
-            // padding: EdgeInsets.zero,
-          ),
         ],
       ),
     );
