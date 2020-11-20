@@ -17,6 +17,7 @@ class _AuthScreenState extends State<AuthScreen> {
     String email,
     String password,
     String username,
+    String userPhone,
     bool isLogin,
     BuildContext ctx,
   ) async {
@@ -42,6 +43,7 @@ class _AuthScreenState extends State<AuthScreen> {
             .setData({
           'username': username,
           'email': email,
+          'phone': userPhone,
         });
       }
     } on PlatformException catch (err) {

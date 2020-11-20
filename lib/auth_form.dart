@@ -11,6 +11,7 @@ class AuthForm extends StatefulWidget {
     String email,
     String password,
     String userName,
+    String userPhone,
     bool isLogin,
     BuildContext ctx,
   ) submitFn;
@@ -25,7 +26,7 @@ class _AuthFormState extends State<AuthForm> {
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
-
+  var _userPhone = '';
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
@@ -33,7 +34,7 @@ class _AuthFormState extends State<AuthForm> {
     if (isValid) {
       _formKey.currentState.save();
       widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
-          _isLogin, context);
+          _userPhone.trim(), _isLogin, context);
     }
   }
 
@@ -78,6 +79,21 @@ class _AuthFormState extends State<AuthForm> {
                       decoration: InputDecoration(labelText: 'Username'),
                       onSaved: (value) {
                         _userName = value;
+                      },
+                    ),
+                  if (!_isLogin)
+                    TextFormField(
+                      key: ValueKey('phone_no.'),
+                      validator: (value) {
+                        if (value.isEmpty || value.length != 10) {
+                          return 'invalid phone no.';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(labelText: 'Phone No.'),
+                      obscureText: true,
+                      onSaved: (value) {
+                        _userPhone = value;
                       },
                     ),
                   TextFormField(
