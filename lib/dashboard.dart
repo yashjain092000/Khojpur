@@ -364,8 +364,9 @@ class _DashboardPageState extends State<DashboardPage> {
           LListItem(
             backgroundColor: Colors.transparent,
             onTap: () {},
-            leading: Icon(Icons.home, size: 20.0, color: Colors.white),
-            title: Text("Home"),
+            leading:
+                Icon(Icons.account_circle, size: 20.0, color: Colors.white),
+            title: Text("Profile"),
             textColor: Colors.white,
             dense: true,
           ),
@@ -377,7 +378,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 MaterialPageRoute(builder: (context) => LostScreen()),
               );
             },
-            leading: Icon(Icons.verified_user, size: 20.0, color: Colors.white),
+            leading: Icon(Icons.search, size: 20.0, color: Colors.white),
             title: Text("Lost Screen"),
             textColor: Colors.white,
             dense: true,
@@ -392,8 +393,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 MaterialPageRoute(builder: (context) => FoundScreen()),
               );
             },
-            leading:
-                Icon(Icons.monetization_on, size: 20.0, color: Colors.white),
+            leading: Icon(Icons.help_outline_rounded,
+                size: 20.0, color: Colors.white),
             title: Text("Found Screen"),
             textColor: Colors.white,
             dense: true,
@@ -403,8 +404,8 @@ class _DashboardPageState extends State<DashboardPage> {
           LListItem(
             backgroundColor: Colors.transparent,
             onTap: () {},
-            leading: Icon(Icons.shopping_cart, size: 20.0, color: Colors.white),
-            title: Text("Cart"),
+            leading: Icon(Icons.done_all, size: 20.0, color: Colors.white),
+            title: Text("Claimed"),
             textColor: Colors.white,
             dense: true,
 
