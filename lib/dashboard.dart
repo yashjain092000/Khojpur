@@ -5,54 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'item.dart';
-// class Dashboard extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Khojpur'),
-//         actions: [
-//           DropdownButton(
-//             icon: Icon(
-//               Icons.more_vert,
-//               color: Theme.of(context).primaryIconTheme.color,
-//             ),
-//             items: [
-//               DropdownMenuItem(
-//                 child: Container(
-//                   child: Row(
-//                     children: <Widget>[
-//                       Icon(Icons.exit_to_app),
-//                       SizedBox(width: 8),
-//                       Text('Logout'),
-//                     ],
-//                   ),
-//                 ),
-//                 value: 'logout',
-//               ),
-//             ],
-//             onChanged: (itemIdentifier) {
-//               if (itemIdentifier == 'logout') {
-//                 FirebaseAuth.instance.signOut();
-//               }
-//             },
-//           ),
-//         ],
-//       ),
-//       body: Container(
-//         child: Column(
-//           children: <Widget>[
-//             Expanded(
-//               child: Text("Hello!"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'item.dart';
+
+List<DropdownMenuItem<String>> _dropDownItem() {
+  List<String> ddl = ["item_1", 'item_2', 'item_3'];
+  return ddl
+      .map((value) => DropdownMenuItem(
+            value: value,
+            child: Text(value),
+          ))
+      .toList();
+}
+
+List<DropdownMenuItem<String>> _dropDownPlaceItem() {
+  List<String> ddl = ["place_1", 'place_2', 'place_3'];
+  return ddl
+      .map((value) => DropdownMenuItem(
+            value: value,
+            child: Text(value),
+          ))
+      .toList();
+}
 
 class Dashboard extends StatelessWidget {
   @override
@@ -81,6 +55,9 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  String _selectedPlace = "";
+  String _selectedItem = "";
+  String currentMail = "";
   //int _counter = 0;
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   final GlobalKey<SideMenuState> _endSideMenuKey = GlobalKey<SideMenuState>();
@@ -138,38 +115,149 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ],
             ),
-            body: Text(
-                "hello") /*StreamBuilder(
-              stream:
-                  Firestore.instance.collection('found_reports').snapshots(),
-              builder: (ctx, streamSnapshot) {
-                if (streamSnapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                final docu = streamSnapshot.data.documents;
-                List<Item> b = [];
-                for (int i = 0; i < docu.length; i++) {
-                  b.add(
-                      Item(docu[i]['place'], docu[i]['item'], docu[i]['date']));
-                }
-                deleteDuplicateItem(b);
-                return ListView.builder(
-                    itemCount: b.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Column(
-                          children: [
-                            Text(b[index].item),
-                            Text(b[index].place),
-                            Text(b[index].date),
-                          ],
-                        ),
-                      );
-                    });
-              }),*/
-            ),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  DropdownButton(
+                    elevation: 0,
+                    // value: _selectedGender,
+                    items: _dropDownPlaceItem(),
+                    hint: Text("place",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Colors.grey[600])),
+                    onChanged: (value) {
+                      _selectedPlace = value;
+                      setState(() {
+                        _selectedPlace = value;
+                      });
+                    },
+                  ),
+                  /*Card(
+                child: */
+                  DropdownButton(
+                    elevation: 0,
+                    // value: _selectedGender,
+                    items: _dropDownItem(),
+                    hint: Text("Item",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Colors.grey[600])),
+                    onChanged: (value) {
+                      _selectedItem = value;
+                      setState(() {
+                        _selectedItem = value;
+                      });
+                    },
+                  ),
+                  Center(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: StreamBuilder(
+                          stream: Firestore.instance
+                              .collection('found_reports')
+                              .snapshots(),
+                          builder: (ctx, streamSnapshot) {
+                            if (streamSnapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            final docu = streamSnapshot.data.documents;
+                            List<Item> abc = [];
+                            for (int i = 0; i < docu.length; i++) {
+                              if (_selectedPlace.compareTo(docu[i]['place']) ==
+                                      0 &&
+                                  _selectedItem.compareTo(docu[i]['item']) ==
+                                      0) {
+                                abc.add(Item(docu[i]['place'], docu[i]['item'],
+                                    docu[i]['date'], docu[i]["itemName"]));
+                              }
+                            }
+                            //deleteDuplicateItem(ab);
+                            return GridView.builder(
+                                itemCount: abc.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        mainAxisSpacing: 4.0,
+                                        crossAxisSpacing: 4.0,
+                                        childAspectRatio: 0.65),
+                                itemBuilder: (context, index) {
+                                  return Card(
+                                    child: Column(
+                                      children: [
+                                        Card(child: Text(abc[index].item)),
+                                        Card(child: Text(abc[index].place)),
+                                        Card(child: Text(abc[index].itemName)),
+                                        Card(
+                                          color: Colors.green,
+                                          child: FlatButton(
+                                              //color: Colors.green,
+                                              child: Text(
+                                                  "place an Claim request"),
+                                              onPressed: () => Firestore
+                                                      .instance
+                                                      .collection(
+                                                          "claim_requests")
+                                                      .document()
+                                                      .setData({
+                                                    "itemName":
+                                                        abc[index].itemName,
+                                                    "item": abc[index].item,
+                                                    "place": abc[index].place,
+                                                    "user_email": currentMail,
+                                                    "date": DateTime.now()
+                                                        .toString()
+                                                  })),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          }),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: StreamBuilder(
+                        stream: Firestore.instance
+                            .collection('lost_messages')
+                            .snapshots(),
+                        builder: (ctx, streamSnapshot) {
+                          if (streamSnapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          final doc = streamSnapshot.data.documents;
+                          List<String> cd = [];
+                          for (int i = 0; i < doc.length; i++) {
+                            cd.add(doc[i]["message"] +
+                                "  mail :" +
+                                doc[i]["mail"]);
+                          }
+                          return ListView.builder(
+                              itemCount: cd.length,
+                              itemBuilder: (context, index) {
+                                return SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Card(child: Text(cd[index])),
+                                );
+                              });
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )),
       ),
     );
   }
