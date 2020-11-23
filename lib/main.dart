@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'auth_screen.dart';
+import 'welcome_screen.dart';
 import 'dashboard.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -52,7 +52,7 @@ class MainScreen extends StatelessWidget {
             if (userSnapShot.hasData) {
               return Dashboard();
             } else {
-              return AuthScreen();
+              return WelcomeScreen(); //AuthScreen();
             }
           }),
     );
