@@ -61,6 +61,20 @@ class _DashboardPageState extends State<DashboardPage> {
   //int _counter = 0;
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   final GlobalKey<SideMenuState> _endSideMenuKey = GlobalKey<SideMenuState>();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  getCurrentUserMail() async {
+    final FirebaseUser user = await auth.currentUser();
+    final uemail = user.email;
+    setState(() {
+      currentMail = uemail;
+    });
+  }
+
+  void initState() {
+    super.initState();
+    getCurrentUserMail();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SideMenu(
@@ -211,6 +225,69 @@ class _DashboardPageState extends State<DashboardPage> {
                                                         .toString()
                                                   })),
                                         ),
+                                        FlatButton(
+                                            onPressed: () {
+                                              showModalBottomSheet(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return StreamBuilder(
+                                                        stream: Firestore
+                                                            .instance
+                                                            .collection(
+                                                                'claim_requests')
+                                                            .snapshots(),
+                                                        builder: (ctx,
+                                                            streamSnapshot) {
+                                                          if (streamSnapshot
+                                                                  .connectionState ==
+                                                              ConnectionState
+                                                                  .waiting) {
+                                                            return Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            );
+                                                          }
+                                                          final doc =
+                                                              streamSnapshot
+                                                                  .data
+                                                                  .documents;
+                                                          List<String> c = [];
+                                                          for (int i = 0;
+                                                              i < doc.length;
+                                                              i++) {
+                                                            if (doc[i]["itemName"]
+                                                                        .compareTo(
+                                                                            abc[index]
+                                                                                .itemName) ==
+                                                                    0 &&
+                                                                doc[i]["item"].compareTo(
+                                                                        abc[index]
+                                                                            .item) ==
+                                                                    0 &&
+                                                                doc[i]["place"].compareTo(
+                                                                        abc[index]
+                                                                            .place) ==
+                                                                    0) {
+                                                              c.add(doc[i][
+                                                                  "user_email"]);
+                                                            }
+                                                          }
+                                                          return ListView
+                                                              .builder(
+                                                                  itemCount:
+                                                                      c.length,
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                          indexA) {
+                                                                    return Card(
+                                                                      child: Text(
+                                                                          c[indexA]),
+                                                                    );
+                                                                  });
+                                                        });
+                                                  });
+                                            },
+                                            child: Text("who claimed"))
                                       ],
                                     ),
                                   );
@@ -246,10 +323,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           return ListView.builder(
                               itemCount: cd.length,
                               itemBuilder: (context, index) {
-                                return SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Card(child: Text(cd[index])),
-                                );
+                                return Card(child: Text(cd[index]));
                               });
                         },
                       ),
