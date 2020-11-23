@@ -44,9 +44,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Welcome Screen'),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -54,20 +51,40 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             padding: EdgeInsets.only(top: 50, bottom: 10, left: 10, right: 10),
             child: Row(
               children: <Widget>[
-                Transform.rotate(
-                  angle: animation.value * 6.3,
-                  child: Image(
-                    image: AssetImage('images/logo.png'),
-                    height: 100,
+                Hero(
+                  tag: 'logo',
+                  child: Transform.rotate(
+                    angle: animation.value * 6.3,
+                    child: Image(
+                      image: AssetImage('images/logo.png'),
+                      height: 100,
+                    ),
                   ),
                 ),
-                WavyAnimatedTextKit(
-                  textStyle:
-                      TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
-                  text: [
-                    "KHOJPUR",
-                  ],
-                  isRepeatingAnimation: true,
+                SizedBox(
+                  width: 250.0,
+                  child: ColorizeAnimatedTextKit(
+                      onTap: () {
+                        print("Tap Event");
+                      },
+                      isRepeatingAnimation: true,
+                      text: [
+                        "Larry Page",
+                        "Bill Gates",
+                        "Steve Jobs",
+                      ],
+                      textStyle:
+                          TextStyle(fontSize: 32.0, fontFamily: "Horizon"),
+                      colors: [
+                        Colors.purple,
+                        Colors.blue,
+                        Colors.yellow,
+                        Colors.red,
+                      ],
+                      textAlign: TextAlign.start,
+                      alignment:
+                          AlignmentDirectional.topStart // or Alignment.topLeft
+                      ),
                 ),
               ],
             ),
@@ -94,7 +111,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 30),
                     Row(children: <Widget>[
                       Text(
-                        "File Found Report",
+                        "File found report",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
@@ -105,7 +122,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 14),
                     Row(children: <Widget>[
                       Text(
-                        "Place a claim to found items",
+                        "Publish lost item notice",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
@@ -116,7 +133,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 14),
                     Row(children: <Widget>[
                       Text(
-                        "Publish a lost item notice",
+                        "Claim found items",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
