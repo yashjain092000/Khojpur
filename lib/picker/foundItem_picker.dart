@@ -46,14 +46,18 @@ class _FoundItemPickerState extends State<FoundItemPicker> {
 
     await ref.putFile(_pickedItemImage).onComplete;
     final profileImageUrl = await ref.getDownloadURL();
-    Firestore.instance.collection("found_reports").document().setData({
+    Firestore.instance
+        .collection("found_reports")
+        .document(widget.mail + widget.itemName)
+        .setData({
       "Item_image": profileImageUrl,
       "place": widget.place,
       "item": widget.item,
       "date": DateTime.now().toString(),
       "itemName": widget.itemName,
       "itemDescription": widget.itemDescription,
-      "persons_mail": widget.mail
+      "persons_mail": widget.mail,
+      "id": widget.mail + widget.itemName
     });
   }
 
