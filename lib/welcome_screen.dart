@@ -111,7 +111,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 30),
                     Row(children: <Widget>[
                       Text(
+<<<<<<< HEAD
                         "File found report",
+=======
+                        "Book your appointments",
+>>>>>>> 7c050f4eedd92841157cc9606e035b5cbbf809d3
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
@@ -122,7 +126,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 14),
                     Row(children: <Widget>[
                       Text(
+<<<<<<< HEAD
                         "Publish lost item notice",
+=======
+                        "Manage your appointments",
+>>>>>>> 7c050f4eedd92841157cc9606e035b5cbbf809d3
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
@@ -133,7 +141,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 14),
                     Row(children: <Widget>[
                       Text(
+<<<<<<< HEAD
                         "Claim found items",
+=======
+                        "Get your appointments booked",
+>>>>>>> 7c050f4eedd92841157cc9606e035b5cbbf809d3
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
