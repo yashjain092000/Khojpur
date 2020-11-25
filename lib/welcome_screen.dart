@@ -149,6 +149,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               ],
             ),
           ),
+          SizedBox(height: 100),
           ElevatedButton(
             onPressed: () {
               Navigator.push(

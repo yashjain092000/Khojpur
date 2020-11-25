@@ -18,7 +18,7 @@ class _DashboardPickerState extends State<DashboardPicker> {
         .get()
         .then((value) {
       setState(() {
-        _usertype = value.data['usermail'].toString();
+        _usertype = value.data['email'].toString();
       });
     });
   }
