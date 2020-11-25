@@ -62,26 +62,22 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
                 SizedBox(
-                  width: 250.0,
+                  width: 200.0,
                   child: ColorizeAnimatedTextKit(
                       onTap: () {
-                        WavyAnimatedTextKit(
-                        textStyle: TextStyle(
-                        fontSize: 32.0,
-                        fontWeight: FontWeight.bold
-                                ),
-                        text: [
-                                "KHOJPUR"
-                              ],
-                  isRepeatingAnimation: true,
-                    );
+                        // WavyAnimatedTextKit(
+                        //   textStyle: TextStyle(
+                        //       color: Colors.black,
+                        //       fontSize: 32.0,
+                        //       fontWeight: FontWeight.bold),
+                        //   text: ["KHOJPUR"],
+                        //   isRepeatingAnimation: true,
+                        // );
                       },
                       isRepeatingAnimation: true,
-                      text: [
-                        "KHOJPUR"
-                      ],
+                      text: ["KHOJPUR"],
                       textStyle:
-                          TextStyle(fontSize: 32.0, fontFamily: "Horizon"),
+                          TextStyle(fontSize: 40.0, fontFamily: "Horizon"),
                       colors: [
                         Colors.purple,
                         Colors.blue,
@@ -118,11 +114,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 30),
                     Row(children: <Widget>[
                       Text(
-<<<<<<< HEAD
                         "File found report",
-=======
-                        "Book your appointments",
->>>>>>> 7c050f4eedd92841157cc9606e035b5cbbf809d3
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
@@ -133,11 +125,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 14),
                     Row(children: <Widget>[
                       Text(
-<<<<<<< HEAD
                         "Publish lost item notice",
-=======
-                        "Manage your appointments",
->>>>>>> 7c050f4eedd92841157cc9606e035b5cbbf809d3
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
@@ -148,11 +136,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: 14),
                     Row(children: <Widget>[
                       Text(
-<<<<<<< HEAD
                         "Claim found items",
-=======
-                        "Get your appointments booked",
->>>>>>> 7c050f4eedd92841157cc9606e035b5cbbf809d3
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20.0,
