@@ -184,8 +184,12 @@ class _DashboardPageState extends State<DashboardPage> {
                                       0 &&
                                   _selectedItem.compareTo(docu[i]['item']) ==
                                       0) {
-                                abc.add(Item(docu[i]['place'], docu[i]['item'],
-                                    docu[i]['date'], docu[i]["itemName"]));
+                                abc.add(Item(
+                                    docu[i]['place'],
+                                    docu[i]['item'],
+                                    docu[i]['date'],
+                                    docu[i]["itemName"],
+                                    docu[i]["Item_image"]));
                               }
                             }
                             //deleteDuplicateItem(ab);
@@ -199,96 +203,105 @@ class _DashboardPageState extends State<DashboardPage> {
                                         childAspectRatio: 0.65),
                                 itemBuilder: (context, index) {
                                   return Card(
-                                    child: Column(
-                                      children: [
-                                        Card(child: Text(abc[index].item)),
-                                        Card(child: Text(abc[index].place)),
-                                        Card(child: Text(abc[index].itemName)),
-                                        Card(
-                                          color: Colors.green,
-                                          child: FlatButton(
-                                              //color: Colors.green,
-                                              child: Text(
-                                                  "place an Claim request"),
-                                              onPressed: () => Firestore
-                                                      .instance
-                                                      .collection(
-                                                          "claim_requests")
-                                                      .document()
-                                                      .setData({
-                                                    "itemName":
-                                                        abc[index].itemName,
-                                                    "item": abc[index].item,
-                                                    "place": abc[index].place,
-                                                    "user_email": currentMail,
-                                                    "date": DateTime.now()
-                                                        .toString()
-                                                  })),
-                                        ),
-                                        FlatButton(
-                                            onPressed: () {
-                                              showModalBottomSheet(
-                                                  context: context,
-                                                  builder: (_) {
-                                                    return StreamBuilder(
-                                                        stream: Firestore
-                                                            .instance
-                                                            .collection(
-                                                                'claim_requests')
-                                                            .snapshots(),
-                                                        builder: (ctx,
-                                                            streamSnapshot) {
-                                                          if (streamSnapshot
-                                                                  .connectionState ==
-                                                              ConnectionState
-                                                                  .waiting) {
-                                                            return Center(
-                                                              child:
-                                                                  CircularProgressIndicator(),
-                                                            );
-                                                          }
-                                                          final doc =
-                                                              streamSnapshot
-                                                                  .data
-                                                                  .documents;
-                                                          List<String> c = [];
-                                                          for (int i = 0;
-                                                              i < doc.length;
-                                                              i++) {
-                                                            if (doc[i]["itemName"]
-                                                                        .compareTo(
-                                                                            abc[index]
-                                                                                .itemName) ==
-                                                                    0 &&
-                                                                doc[i]["item"].compareTo(
-                                                                        abc[index]
-                                                                            .item) ==
-                                                                    0 &&
-                                                                doc[i]["place"].compareTo(
-                                                                        abc[index]
-                                                                            .place) ==
-                                                                    0) {
-                                                              c.add(doc[i][
-                                                                  "user_email"]);
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 100,
+                                            width: 100,
+                                            child: Card(
+                                              child: CircleAvatar(
+                                                backgroundImage: NetworkImage(
+                                                    abc[index].image),
+                                              ),
+                                            ),
+                                          ),
+                                          Card(child: Text(abc[index].item)),
+                                          Card(child: Text(abc[index].place)),
+                                          Card(
+                                              child: Text(abc[index].itemName)),
+                                          Card(
+                                            color: Colors.green,
+                                            child: FlatButton(
+                                                //color: Colors.green,
+                                                child: Text(
+                                                    "place an Claim request"),
+                                                onPressed: () => Firestore
+                                                        .instance
+                                                        .collection(
+                                                            "claim_requests")
+                                                        .document()
+                                                        .setData({
+                                                      "itemName":
+                                                          abc[index].itemName,
+                                                      "item": abc[index].item,
+                                                      "place": abc[index].place,
+                                                      "user_email": currentMail,
+                                                      "date": DateTime.now()
+                                                          .toString()
+                                                    })),
+                                          ),
+                                          FlatButton(
+                                              onPressed: () {
+                                                showModalBottomSheet(
+                                                    context: context,
+                                                    builder: (_) {
+                                                      return StreamBuilder(
+                                                          stream: Firestore
+                                                              .instance
+                                                              .collection(
+                                                                  'claim_requests')
+                                                              .snapshots(),
+                                                          builder: (ctx,
+                                                              streamSnapshot) {
+                                                            if (streamSnapshot
+                                                                    .connectionState ==
+                                                                ConnectionState
+                                                                    .waiting) {
+                                                              return Center(
+                                                                child:
+                                                                    CircularProgressIndicator(),
+                                                              );
                                                             }
-                                                          }
-                                                          return ListView
-                                                              .builder(
-                                                                  itemCount:
-                                                                      c.length,
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                          indexA) {
-                                                                    return Card(
-                                                                      child: Text(
-                                                                          c[indexA]),
-                                                                    );
-                                                                  });
-                                                        });
-                                                  });
-                                            },
-                                            child: Text("who claimed"))
-                                      ],
+                                                            final doc =
+                                                                streamSnapshot
+                                                                    .data
+                                                                    .documents;
+                                                            List<String> c = [];
+                                                            for (int i = 0;
+                                                                i < doc.length;
+                                                                i++) {
+                                                              if (doc[i]["itemName"].compareTo(abc[index].itemName) == 0 &&
+                                                                  doc[i]["item"].compareTo(
+                                                                          abc[index]
+                                                                              .item) ==
+                                                                      0 &&
+                                                                  doc[i]["place"]
+                                                                          .compareTo(
+                                                                              abc[index].place) ==
+                                                                      0) {
+                                                                c.add(doc[i][
+                                                                    "user_email"]);
+                                                              }
+                                                            }
+                                                            return ListView
+                                                                .builder(
+                                                                    itemCount: c
+                                                                        .length,
+                                                                    itemBuilder:
+                                                                        (context,
+                                                                            indexA) {
+                                                                      return Card(
+                                                                        child: Text(
+                                                                            c[indexA]),
+                                                                      );
+                                                                    });
+                                                          });
+                                                    });
+                                              },
+                                              child: Text("who claimed"))
+                                        ],
+                                      ),
                                     ),
                                   );
                                 });
