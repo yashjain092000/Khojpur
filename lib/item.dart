@@ -4,7 +4,8 @@ class Item {
   String item;
   String date;
   String itemName;
-  Item(this.place, this.item, this.date, this.itemName);
+  String image;
+  Item(this.place, this.item, this.date, this.itemName, this.image);
 }
 
 void deleteDuplicateItem(List<Item> c) {
