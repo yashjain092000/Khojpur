@@ -189,7 +189,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                     docu[i]['item'],
                                     docu[i]['date'],
                                     docu[i]["itemName"],
-                                    docu[i]["Item_image"]));
+                                    docu[i]["Item_image"],
+                                    docu[i]["id"]));
                               }
                             }
                             //deleteDuplicateItem(ab);
@@ -291,9 +292,21 @@ class _DashboardPageState extends State<DashboardPage> {
                                                                     itemBuilder:
                                                                         (context,
                                                                             indexA) {
-                                                                      return Card(
-                                                                        child: Text(
+                                                                      return ListTile(
+                                                                        title: Text(
                                                                             c[indexA]),
+                                                                        trailing: FlatButton(
+                                                                            onPressed: () {
+                                                                              Firestore.instance.collection("claimed_items").document().setData({
+                                                                                "itemName": abc[index].itemName,
+                                                                                "item": abc[index].item,
+                                                                                "place": abc[index].place,
+                                                                                "user_claimed": c[indexA],
+                                                                                "date": DateTime.now().toString()
+                                                                              });
+                                                                              Firestore.instance.collection("found_reports").document(abc[index].id).delete();
+                                                                            },
+                                                                            child: Text("give_claim")),
                                                                       );
                                                                     });
                                                           });
