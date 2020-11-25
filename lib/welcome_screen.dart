@@ -65,13 +65,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   width: 250.0,
                   child: ColorizeAnimatedTextKit(
                       onTap: () {
-                        print("Tap Event");
+                        WavyAnimatedTextKit(
+                        textStyle: TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.bold
+                                ),
+                        text: [
+                                "KHOJPUR"
+                              ],
+                  isRepeatingAnimation: true,
+                    );
                       },
                       isRepeatingAnimation: true,
                       text: [
-                        "Larry Page",
-                        "Bill Gates",
-                        "Steve Jobs",
+                        "KHOJPUR"
                       ],
                       textStyle:
                           TextStyle(fontSize: 32.0, fontFamily: "Horizon"),
