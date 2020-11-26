@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dashboard.dart';
 import 'new_dashboard.dart';
 import 'package:flutter/material.dart';
@@ -10,26 +10,36 @@ class DashboardPicker extends StatefulWidget {
 }
 
 class _DashboardPickerState extends State<DashboardPicker> {
-  var _usertype;
-  Future<void> _getUserName() async {
+  String _usermail = "";
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  getCurrentUserMail() async {
+    final FirebaseUser user = await auth.currentUser();
+    final uemail = user.email;
+    setState(() {
+      _usermail = uemail;
+    });
+  }
+  /* _getUserName() async {
     Firestore.instance
         .collection('users')
         .document((await FirebaseAuth.instance.currentUser()).uid)
         .get()
         .then((value) {
       setState(() {
-        _usertype = value.data['email'].toString();
+        _usertype = value.data['email'];
       });
     });
-  }
+  }*/
 
   void initState() {
     super.initState();
-    _getUserName();
+    getCurrentUserMail();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _usertype == "master@gmail.com" ? NewDashboard() : Dashboard();
+    return _usermail.compareTo("master@gmail.com") == 0
+        ? NewDashboard()
+        : Dashboard();
   }
 }

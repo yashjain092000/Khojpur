@@ -18,7 +18,7 @@ class _ClaimedScreenState extends State<ClaimedScreen> {
         title: Text("Claimed Items"),
       ),
       body: StreamBuilder(
-          stream: Firestore.instance.collection('claimed').snapshots(),
+          stream: Firestore.instance.collection('claimed_items').snapshots(),
           builder: (ctx, streamSnapshot) {
             if (streamSnapshot.connectionState == ConnectionState.waiting) {
               return Center(
