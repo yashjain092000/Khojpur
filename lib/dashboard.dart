@@ -1,3 +1,4 @@
+//import 'package:Khojpur/claimedScreen.dart';
 import 'package:Khojpur/foundScreen.dart';
 import 'package:Khojpur/lostScreen.dart';
 //import 'package:Khojpur/picker/foundItem_picker.dart';
@@ -58,6 +59,7 @@ class _DashboardPageState extends State<DashboardPage> {
   String _selectedPlace = "";
   String _selectedItem = "";
   String currentMail = "";
+  String _username = "";
   //int _counter = 0;
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   final GlobalKey<SideMenuState> _endSideMenuKey = GlobalKey<SideMenuState>();
@@ -70,9 +72,25 @@ class _DashboardPageState extends State<DashboardPage> {
     });
   }
 
+  getUserName() async {
+    await Firestore.instance
+        .collection("users")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      for (int i = 0; i < snapshot.documents.length; i++) {
+        if (snapshot.documents[i]['email'].compareTo(currentMail) == 0) {
+          setState(() {
+            _username = snapshot.documents[i]['username'];
+          });
+        }
+      }
+    });
+  }
+
   void initState() {
     super.initState();
     getCurrentUserMail();
+    getUserName();
   }
 
   @override
@@ -380,7 +398,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 SizedBox(height: 16.0),
                 LText(
-                  "\l.lead{Hello},\n\l.lead.bold{Johnie}",
+                  "hello " + _username,
                   baseStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 20.0),
@@ -427,16 +445,21 @@ class _DashboardPageState extends State<DashboardPage> {
 
             // padding: EdgeInsets.zero,
           ),
-          LListItem(
+          /*LListItem(
             backgroundColor: Colors.transparent,
-            onTap: () {},
+            onTap: () {
+              /*Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ClaimedScreen()),
+              );*/
+            },
             leading: Icon(Icons.done_all, size: 20.0, color: Colors.white),
             title: Text("Claimed"),
             textColor: Colors.white,
             dense: true,
 
             // padding: EdgeInsets.zero,
-          ),
+          ),*/
         ],
       ),
     );
