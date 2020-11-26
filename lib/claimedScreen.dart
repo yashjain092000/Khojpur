@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:liquid_ui/liquid_ui.dart';
-//import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'item.dart';
 
@@ -18,7 +15,7 @@ class _ClaimedScreenState extends State<ClaimedScreen> {
         title: Text("Claimed Items"),
       ),
       body: StreamBuilder(
-          stream: Firestore.instance.collection('claimed_items').snapshots(),
+          stream: Firestore.instance.collection('claimed').snapshots(),
           builder: (ctx, streamSnapshot) {
             if (streamSnapshot.connectionState == ConnectionState.waiting) {
               return Center(
