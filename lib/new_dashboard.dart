@@ -1,3 +1,4 @@
+import 'package:Khojpur/claimedScreen.dart';
 import 'package:Khojpur/foundScreen.dart';
 import 'package:Khojpur/lostScreen.dart';
 //import 'package:Khojpur/picker/foundItem_picker.dart';
@@ -55,6 +56,7 @@ class NewDashboardPage extends StatefulWidget {
 }
 
 class _NewDashboardPageState extends State<NewDashboardPage> {
+  String _username = "";
   String _selectedPlace = "";
   String _selectedItem = "";
   String currentMail = "";
@@ -70,9 +72,25 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
     });
   }
 
+  getUserName() async {
+    await Firestore.instance
+        .collection("users")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      for (int i = 0; i < snapshot.documents.length; i++) {
+        if (snapshot.documents[i]['email'].compareTo(currentMail) == 0) {
+          setState(() {
+            _username = snapshot.documents[i]['username'];
+          });
+        }
+      }
+    });
+  }
+
   void initState() {
     super.initState();
     getCurrentUserMail();
+    getUserName();
   }
 
   @override
@@ -313,7 +331,15 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
                                                           });
                                                     });
                                               },
-                                              child: Text("who claimed"))
+                                              child: Text("who claimed")),
+                                          IconButton(
+                                              icon: Icon(Icons.delete),
+                                              onPressed: () {
+                                                Firestore.instance
+                                                    .collection("found_reports")
+                                                    .document(abc[index].id)
+                                                    .delete();
+                                              })
                                         ],
                                       ),
                                     ),
@@ -381,7 +407,7 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
                 ),
                 SizedBox(height: 16.0),
                 LText(
-                  "\l.lead{Hello},\n\l.lead.bold{Johnie}",
+                  "hello " + _username,
                   baseStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 20.0),
@@ -430,7 +456,12 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
           ),
           LListItem(
             backgroundColor: Colors.transparent,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ClaimedScreen()),
+              );
+            },
             leading: Icon(Icons.done_all, size: 20.0, color: Colors.white),
             title: Text("Claimed"),
             textColor: Colors.white,
