@@ -78,7 +78,11 @@ class _FoundItemPickerState extends State<FoundItemPicker> {
             onPressed: _pickImageThroughGallery,
             icon: Icon(Icons.image),
             label: Text("Add items image by gallery")),
-        FlatButton(onPressed: _uploadImage, child: Text("Upload report"))
+        RaisedButton(
+            elevation: 9,
+            color: Colors.yellow,
+            onPressed: _uploadImage,
+            child: Text("Upload report"))
       ],
     );
   }

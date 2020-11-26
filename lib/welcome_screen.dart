@@ -43,10 +43,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.yellow,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: 100),
           Padding(
             padding: EdgeInsets.only(top: 50, bottom: 10, left: 10, right: 10),
             child: Row(
@@ -150,7 +151,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
           ),
           SizedBox(height: 100),
-          ElevatedButton(
+          RaisedButton(
+            elevation: 4,
+            color: Colors.green,
+            textColor: Colors.black,
             onPressed: () {
               Navigator.push(
                 context,
@@ -159,7 +163,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             },
             child: Text('Login'),
           ),
-          ElevatedButton(
+          RaisedButton(
+            elevation: 4,
+            color: Colors.green,
+            textColor: Colors.black,
             onPressed: () {
               Navigator.push(
                 context,

@@ -1,6 +1,5 @@
 import 'package:Khojpur/foundScreen.dart';
 import 'package:Khojpur/lostScreen.dart';
-//import 'package:Khojpur/picker/foundItem_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:liquid_ui/liquid_ui.dart';
@@ -36,7 +35,7 @@ class Dashboard extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Khojpur',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: DashboardPage(title: 'Dashboard'),
