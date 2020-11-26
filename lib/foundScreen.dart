@@ -57,74 +57,76 @@ class _FoundScreenState extends State<FoundScreen> {
         backgroundColor: Colors.green,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            DropdownButton(
-              elevation: 0,
-              // value: _selectedGender,
-              items: _dropDownPlaceItem(),
-              hint: Text("place",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(color: Colors.grey[600])),
-              onChanged: (value) {
-                _selectedPlace = value;
-                setState(() {
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              DropdownButton(
+                elevation: 0,
+                // value: _selectedGender,
+                items: _dropDownPlaceItem(),
+                hint: Text("place",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Colors.grey[600])),
+                onChanged: (value) {
                   _selectedPlace = value;
-                });
-              },
-            ),
-            /*Card(
-              child: */
-            DropdownButton(
-              elevation: 0,
-              // value: _selectedGender,
-              items: _dropDownItem(),
-              hint: Text("Item",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(color: Colors.grey[600])),
-              onChanged: (value) {
-                _selectedItem = value;
-                setState(() {
+                  setState(() {
+                    _selectedPlace = value;
+                  });
+                },
+              ),
+              /*Card(
+                child: */
+              DropdownButton(
+                elevation: 0,
+                // value: _selectedGender,
+                items: _dropDownItem(),
+                hint: Text("Item",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Colors.grey[600])),
+                onChanged: (value) {
                   _selectedItem = value;
-                });
-              },
-            ),
-            Card(
-              child: TextField(
-                onChanged: (value) {
                   setState(() {
-                    _itemName = value;
+                    _selectedItem = value;
                   });
                 },
-                decoration: InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepPurple),
-                    ),
-                    labelText: "itemname",
-                    labelStyle: TextStyle(color: Colors.grey[600])),
               ),
-            ),
-            Card(
-              child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    _itemDescription = value;
-                  });
-                },
-                decoration: InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepPurple),
-                    ),
-                    labelText: "itemDescription",
-                    labelStyle: TextStyle(color: Colors.grey[600])),
+              Card(
+                child: TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      _itemName = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.deepPurple),
+                      ),
+                      labelText: "itemname",
+                      labelStyle: TextStyle(color: Colors.grey[600])),
+                ),
               ),
-            ),
-            Card(
-                child: FoundItemPicker(_selectedPlace, _selectedItem,
-                    _currentMail, _itemName, _itemDescription)),
-          ],
+              Card(
+                child: TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      _itemDescription = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.deepPurple),
+                      ),
+                      labelText: "itemDescription",
+                      labelStyle: TextStyle(color: Colors.grey[600])),
+                ),
+              ),
+              Card(
+                  child: FoundItemPicker(_selectedPlace, _selectedItem,
+                      _currentMail, _itemName, _itemDescription)),
+            ],
+          ),
         ),
       ),
     );

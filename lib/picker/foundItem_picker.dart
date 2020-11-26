@@ -60,27 +60,29 @@ class _FoundItemPickerState extends State<FoundItemPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 40,
-          backgroundImage:
-              _pickedItemImage != null ? FileImage(_pickedItemImage) : null,
-        ),
-        FlatButton.icon(
-            onPressed: _pickImage,
-            icon: Icon(Icons.image),
-            label: Text("Add items image by camera")),
-        FlatButton.icon(
-            onPressed: _pickImageThroughGallery,
-            icon: Icon(Icons.image),
-            label: Text("Add items image by gallery")),
-        RaisedButton(
-            elevation: 9,
-            color: Colors.yellow,
-            onPressed: _uploadImage,
-            child: Text("Upload report"))
-      ],
+    return SingleChildScrollView(
+          child: Column(
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundImage:
+                _pickedItemImage != null ? FileImage(_pickedItemImage) : null,
+          ),
+          FlatButton.icon(
+              onPressed: _pickImage,
+              icon: Icon(Icons.image),
+              label: Text("Add items image by camera")),
+          FlatButton.icon(
+              onPressed: _pickImageThroughGallery,
+              icon: Icon(Icons.image),
+              label: Text("Add items image by gallery")),
+          RaisedButton(
+              elevation: 9,
+              color: Colors.yellow,
+              onPressed: _uploadImage,
+              child: Text("Upload report"))
+        ],
+      ),
     );
   }
 }
