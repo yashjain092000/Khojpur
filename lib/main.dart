@@ -1,47 +1,17 @@
-import 'package:Khojpur/dashboardPicker.dart';
+import 'dashboardPicker.dart';
+import 'homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'welcome_screen.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Khojpur',
-      home: AnimatedSplashScreen(
-          duration: 3000,
-          splash: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    height: 600.0,
-                    width: 600,
-                    child: Image.asset(
-                      'images/logo.png',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                Text("KHOJPUR")
-              ],
-            ),
-          ),
-          nextScreen: MainScreen(),
-          splashTransition: SplashTransition.rotationTransition,
-          pageTransitionType: PageTransitionType.topToBottom,
-          backgroundColor: Colors.yellow[600]),
-    );
-  }
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  runApp(AppointMe());
 }
 
-class MainScreen extends StatelessWidget {
+class AppointMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,7 +22,7 @@ class MainScreen extends StatelessWidget {
             if (userSnapShot.hasData) {
               return DashboardPicker();
             } else {
-              return WelcomeScreen();
+              return HomeScreen();
             }
           }),
     );

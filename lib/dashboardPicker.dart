@@ -39,7 +39,7 @@ class _DashboardPickerState extends State<DashboardPicker> {
   @override
   Widget build(BuildContext context) {
     return _usermail.compareTo("master@gmail.com") == 0
-        ? NewDashboard()
-        : Dashboard();
+        ? NewDashboard()//master dashboard
+        : Dashboard();//user dashboard
   }
 }

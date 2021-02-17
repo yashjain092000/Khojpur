@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
+import 'login_screen.dart';
 
 class AuthForm extends StatefulWidget {
   AuthForm(
@@ -8,12 +9,11 @@ class AuthForm extends StatefulWidget {
   );
 
   final bool isLoading;
+
   final void Function(
+    //String typeUser,
     String email,
     String password,
-    String userName,
-    String userPhone,
-    bool isLogin,
     BuildContext ctx,
   ) submitFn;
 
@@ -23,19 +23,19 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
-  var _isLogin = true;
+  //var _typeUser = 'Appointee';
   var _userEmail = '';
-  var _userName = '';
   var _userPassword = '';
-  var _userPhone = '';
+
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
 
     if (isValid) {
       _formKey.currentState.save();
-      widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
-          _userPhone.trim(), _isLogin, context);
+      widget.submitFn(
+          //_typeUser.trim(), 
+          _userEmail.trim(), _userPassword.trim(), context);
     }
   }
 
@@ -44,28 +44,27 @@ class _AuthFormState extends State<AuthForm> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 160.0),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           TypewriterAnimatedTextKit(
               speed: Duration(milliseconds: 300),
               totalRepeatCount: 0,
-              text: [_isLogin ? "Welcome Back!" : "Welcome!!"],
+              text: ["Welcome Back!"],
               textStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
+                  fontSize: MediaQuery.of(context).size.width * 0.1,
                   fontFamily: "Agne",
                   fontWeight: FontWeight.w500),
               textAlign: TextAlign.start,
               alignment: AlignmentDirectional.topStart),
-          SizedBox(height: 60.0),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.07),
           Center(
             child: Card(
-              elevation: 20.0,
-              color: Colors.yellow,
-              shadowColor: Colors.black,
-              margin: EdgeInsets.all(20),
+              shadowColor: Colors.deepPurple,
+              elevation: MediaQuery.of(context).size.height * 0.04,
+              margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -81,41 +80,16 @@ class _AuthFormState extends State<AuthForm> {
                           },
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            labelText: 'Email address',
-                          ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.deepPurple),
+                              ),
+                              labelText: 'Email address',
+                              labelStyle: TextStyle(color: Colors.grey[600])),
                           onSaved: (value) {
                             _userEmail = value;
                           },
                         ),
-                        if (!_isLogin)
-                          TextFormField(
-                            key: ValueKey('username'),
-                            validator: (value) {
-                              if (value.isEmpty || value.length < 4) {
-                                return 'Please enter at least 4 characters';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(labelText: 'Username'),
-                            onSaved: (value) {
-                              _userName = value;
-                            },
-                          ),
-                        if (!_isLogin)
-                          TextFormField(
-                            key: ValueKey('phone_no.'),
-                            validator: (value) {
-                              if (value.isEmpty || value.length != 10) {
-                                return 'invalid phone no.';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(labelText: 'Phone No.'),
-                            obscureText: true,
-                            onSaved: (value) {
-                              _userPhone = value;
-                            },
-                          ),
                         TextFormField(
                           key: ValueKey('password'),
                           validator: (value) {
@@ -124,38 +98,41 @@ class _AuthFormState extends State<AuthForm> {
                             }
                             return null;
                           },
-                          decoration: InputDecoration(labelText: 'Password'),
+                          decoration: InputDecoration(
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.deepPurple),
+                              ),
+                              labelText: 'Password',
+                              labelStyle: TextStyle(color: Colors.grey[600])),
                           obscureText: true,
                           onSaved: (value) {
                             _userPassword = value;
                           },
                         ),
                         SizedBox(height: 12),
-                        if (widget.isLoading) CircularProgressIndicator(),
+                        if (widget.isLoading)
+                          CircularProgressIndicator(
+                            backgroundColor: Colors.deepPurple,
+                          ),
                         if (!widget.isLoading)
                           RaisedButton(
-                            elevation: 9.0,
-                            color: Colors.green,
-                            child: Text(
-                              _isLogin ? 'Login' : 'Signup',
-                              style: TextStyle(
-                                color: Colors.yellow,
-                              ),
-                            ),
+                            elevation: 6.0,
+                            color: Colors.deepPurple,
+                            textColor: Colors.white,
+                            child: Text('Login'),
                             onPressed: _trySubmit,
                           ),
                         if (!widget.isLoading)
                           FlatButton(
-                            textColor: Colors.green,
-                            child: Text(
-                              _isLogin
-                                  ? 'Create new account'
-                                  : 'I already have an account',
-                            ),
+                            textColor: Colors.deepPurple,
+                            child: Text("Forgot Password?"),
                             onPressed: () {
-                              setState(() {
-                                _isLogin = !_isLogin;
-                              });
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ));
                             },
                           )
                       ],

@@ -43,6 +43,7 @@ dependencies:
   carousel_pro: ^1.0.0
   intl: ^0.16.1
   flutter_datetime_picker: ^1.4.0
+  hidden_drawer_menu: ^2.0.1
   
 dev_dependencies:
   flutter_test:

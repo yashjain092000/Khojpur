@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'new_auth_form.dart';
+import 'login_form.dart';
 
-class NewAuthScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _NewAuthScreenState createState() => _NewAuthScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _NewAuthScreenState extends State<NewAuthScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
-  var _isLoading = false;
 
+  var _isLoading = false;
   void _submitAuthForm(
+   // String typeUser,
     String email,
     String password,
     BuildContext ctx,
@@ -26,7 +27,7 @@ class _NewAuthScreenState extends State<NewAuthScreen> {
         password: password,
       );
     } on PlatformException catch (err) {
-      var message = 'An error occurred, pelase check your credentials!';
+      var message = 'An error occurred, please check your credentials!';
 
       if (err.message != null) {
         message = err.message;
@@ -52,8 +53,8 @@ class _NewAuthScreenState extends State<NewAuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
-      body: NewAuthForm(
+      backgroundColor: Colors.white,
+      body: AuthForm(
         _submitAuthForm,
         _isLoading,
       ),
