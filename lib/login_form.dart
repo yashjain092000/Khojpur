@@ -42,46 +42,30 @@ class _AuthFormState extends State<AuthForm> {
       child: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-
-          Text("welcome...."),
-//           SizedBox(
-//   width: 250.0,
-//   child: ScaleAnimatedTextKit(
-//     onTap: () {
-//         print("Tap Event");
-//       },
-//     text: [
-//       "Think",
-//       "Build",
-//       "Ship"
-//       ],
-//     textStyle: TextStyle(
-//         fontSize: 70.0,
-//         fontFamily: "Canterbury"
-//     ),
-//     textAlign: TextAlign.start,
-//   ),
-// ),
-SizedBox(
+          SizedBox(
   width: 250.0,
-  child: TypewriterAnimatedTextKit(
-    onTap: () {
-        print("Tap Event");
-      },
-    text: [
-      "welcome",
-    ],
-    textStyle: TextStyle(
-        fontSize: 30.0,
-        fontFamily: "Agne"
+  child: Center(
+    child: TyperAnimatedTextKit(
+      speed:Duration(milliseconds:250),
+      text: [
+        "Welcome Back!",
+        "Welcome Back!",
+        "Welcome Back!",
+        
+      ],
+      textStyle: TextStyle(
+          fontSize: 34.0,
+          fontFamily: "Bobbers"
+      ),
+      textAlign: TextAlign.start,
     ),
-    textAlign: TextAlign.start,
   ),
 ),
+
           SizedBox(height: MediaQuery.of(context).size.height * 0.07),
           Center(
             child: Card(
-              shadowColor: Colors.deepPurple,
+              shadowColor: Colors.green[800],
               elevation: MediaQuery.of(context).size.height * 0.04,
               margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
               child: SingleChildScrollView(
@@ -136,19 +120,19 @@ SizedBox(
                         SizedBox(height: 12),
                         if (widget.isLoading)
                           CircularProgressIndicator(
-                            backgroundColor: Colors.deepPurple,
+                            backgroundColor: Colors.green[800],
                           ),
                         if (!widget.isLoading)
                           RaisedButton(
                             elevation: 6.0,
-                            color: Colors.deepPurple,
+                            color: Colors.green[800],
                             textColor: Colors.white,
                             child: Text('Login'),
                             onPressed: _trySubmit,
                           ),
                         if (!widget.isLoading)
                           FlatButton(
-                            textColor: Colors.deepPurple,
+                            textColor: Colors.green[800],
                             child: Text("Forgot Password?"),
                             onPressed: () {
                               Navigator.push(
