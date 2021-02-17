@@ -1,16 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
-// List<DropdownMenuItem<String>> _dropDownItem() {
-//   List<String> ddl = ["Male", 'Female', 'Other'];
-//   return ddl
-//       .map((value) => DropdownMenuItem(
-//             value: value,
-//             child: Text(value),
-//           ))
-//       .toList();
-// }
-
 class AuthFormAppointer extends StatefulWidget {
   AuthFormAppointer(
     this.submitFn,
@@ -24,17 +14,6 @@ class AuthFormAppointer extends StatefulWidget {
     String password,
     String userName,
     String phn,
-    // int age,
-    // String address,
-    // String specialisation,
-    // int fee,
-    // int emFee,
-    // String morTime1,
-    // String morTime2,
-    // String eveTime1,
-    // String eveTime2,
-    // int eachTime,
-    // bool isLogin,
     BuildContext ctx,
   ) submitFn;
 
@@ -44,21 +23,10 @@ class AuthFormAppointer extends StatefulWidget {
 
 class _AuthFormAppointerState extends State<AuthFormAppointer> {
   final _formKey = GlobalKey<FormState>();
-  //var _isLogin = true;
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
   var _phn = '';
-  // int _age = 0;
-  // String _address = '';
-  // String _specialisation = '';
-  // int _fee = 0;
-  // int _emFee = 0;
-  // String _morTime1;
-  // String _morTime2;
-  // String _eveTime1;
-  // String _eveTime2;
-  // int _eachTime = 0;
 
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();
@@ -71,17 +39,6 @@ class _AuthFormAppointerState extends State<AuthFormAppointer> {
           _userPassword.trim(),
           _userName.trim(),
           _phn.trim(),
-          // _age,
-          // _address.trim(),
-          // _specialisation.trim(),
-          // _fee,
-          // _emFee,
-          // _morTime1,
-          // _morTime2,
-          // _eveTime1,
-          // _eveTime2,
-          // _eachTime,
-          // _isLogin,
           context);
     }
   }
@@ -92,20 +49,30 @@ class _AuthFormAppointerState extends State<AuthFormAppointer> {
       child: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-          TypewriterAnimatedTextKit(
-              speed: Duration(milliseconds: 300),
-              totalRepeatCount: 0,
-              text: ["Welcome!"],
-              textStyle: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.1,
-                  fontFamily: "Agne",
-                  fontWeight: FontWeight.w500),
-              textAlign: TextAlign.start,
-              alignment: AlignmentDirectional.topStart),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+          SizedBox(
+  width: 250.0,
+  child: Center(
+    child: TyperAnimatedTextKit(
+      speed:Duration(milliseconds:250),
+      text: [
+        "Welcome!",
+        "Welcome!",
+        "Welcome!",
+        
+      ],
+      textStyle: TextStyle(
+          fontSize: 34.0,
+          fontFamily: "Bobbers"
+      ),
+      textAlign: TextAlign.start,
+    ),
+  ),
+),
+
+          SizedBox(height: MediaQuery.of(context).size.height * 0.04),
           Center(
             child: Card(
-              shadowColor: Colors.deepPurple,
+              shadowColor: Colors.green[800],
               elevation: MediaQuery.of(context).size.height * 0.04,
               margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
               child: SingleChildScrollView(
@@ -138,8 +105,6 @@ class _AuthFormAppointerState extends State<AuthFormAppointer> {
                             _userEmail = value;
                           },
                         ),
-                      
-                        Divider(thickness: 0.8, color: Colors.grey[600]),
                         TextFormField(
                           key: ValueKey('username'),
                           validator: (value) {
@@ -204,7 +169,7 @@ class _AuthFormAppointerState extends State<AuthFormAppointer> {
                         if (!widget.isLoading)
                           RaisedButton(
                             elevation: 6.0,
-                            color: Colors.deepPurple,
+                            color: Colors.green[800],
                             textColor: Colors.white,
                             child: Text('Signup'),
                             onPressed: _trySubmit,
