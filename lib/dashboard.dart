@@ -6,7 +6,7 @@ import 'package:liquid_ui/liquid_ui.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'item.dart';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 List<DropdownMenuItem<String>> _dropDownItem() {
   List<String> ddl = ["item_1", 'item_2', 'item_3'];
   return ddl
@@ -57,7 +57,6 @@ class _DashboardPageState extends State<DashboardPage> {
   String _selectedPlace = "";
   String _selectedItem = "";
   String currentMail = "";
-  //int _counter = 0;
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   final GlobalKey<SideMenuState> _endSideMenuKey = GlobalKey<SideMenuState>();
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -88,6 +87,7 @@ class _DashboardPageState extends State<DashboardPage> {
         type: SideMenuType.slideNRotate,
         child: Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.green[800],
               centerTitle: true,
               leading: IconButton(
                 icon: Icon(Icons.menu),
@@ -224,7 +224,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                             child: FlatButton(
                                                 //color: Colors.green,
                                                 child: Text(
-                                                    "place an Claim request"),
+                                                    "Place a Claim request"),
                                                 onPressed: () => Firestore
                                                         .instance
                                                         .collection(
@@ -248,9 +248,38 @@ class _DashboardPageState extends State<DashboardPage> {
                           }),
                     ),
                   ),
+                  Divider( color:Colors.grey, thickness: 1.0),
+
+                   SizedBox(
+  width: 250.0,
+  child: Center(
+    child: ColorizeAnimatedTextKit(
+      text: [
+        "Lost Items Info",
+        "Lost Items Info",
+        "Lost Items Info",
+      ],
+      textStyle: TextStyle(
+          fontSize: 30.0,
+          fontFamily: "Horizon"
+      ),
+      colors: [
+        Colors.purple,
+        Colors.blue,
+        Colors.yellow,
+        Colors.red,
+        Colors.green,
+      ],
+      textAlign: TextAlign.start,
+    ),
+  ),
+),
+   Divider( color:Colors.grey, thickness: 1.0),
+
                   SizedBox(
-                    height: 30,
+                    height: 16,
                   ),
+                 
                   Center(
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.4,
@@ -307,7 +336,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 SizedBox(height: 16.0),
                 LText(
-                  "\l.lead{Hello},\n\l.lead.bold{Johnie}",
+                  "\l.lead{Hello}",
                   baseStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 20.0),
@@ -316,7 +345,7 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           LListItem(
             backgroundColor: Colors.transparent,
-            onTap: () {},
+            
             leading:
                 Icon(Icons.account_circle, size: 20.0, color: Colors.white),
             title: Text("Profile"),
@@ -358,7 +387,7 @@ class _DashboardPageState extends State<DashboardPage> {
             backgroundColor: Colors.transparent,
             onTap: () {},
             leading: Icon(Icons.done_all, size: 20.0, color: Colors.white),
-            title: Text("Claimed"),
+            title: Text("Claimed Items"),
             textColor: Colors.white,
             dense: true,
 

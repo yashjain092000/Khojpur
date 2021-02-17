@@ -165,7 +165,7 @@ class _AuthFormAppointerState extends State<AuthFormAppointer> {
                           },
                         ),
                         SizedBox(height: 12),
-                        if (widget.isLoading) CircularProgressIndicator(),
+                        if (widget.isLoading) CircularProgressIndicator( backgroundColor: Colors.green[800],),
                         if (!widget.isLoading)
                           RaisedButton(
                             elevation: 6.0,
