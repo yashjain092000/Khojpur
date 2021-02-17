@@ -48,6 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           Padding(
             padding: EdgeInsets.only(top: 50, bottom: 10, left: 10, right: 10),
             child: Row(
+             
               children: <Widget>[
                 Hero(
                   tag: 'logo',
@@ -59,36 +60,23 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     ),
                   ),
                 ),
-                Text(
-                  "APPOINT",
-                  style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.06,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                  height: 100.0,
-                ),
-                RotateAnimatedTextKit(
-                  onTap: () {
-                    print("Tap Event");
-                  },
-                  isRepeatingAnimation: true,
+                        SizedBox(
+              width: 140.0,
+                child: ScaleAnimatedTextKit(
+                text: [
+                        "KHOJPUR",
+                        "KHOJPUR",
+                        "KHOJPUR",
+                      ],
+          textStyle: TextStyle(
+        fontSize: 31.0,
+        fontFamily: "Agne",
+    ),
+    textAlign: TextAlign.start,
+  ),
+),
 
-                  //totalRepeatCount: 3,
-                  text: [
-                    "KHOJPUR",
-                    "KHOJPUR",
-                    "KHOJPUR",
-                    "KHOJPUR",
-                  ],
-                  // alignment: Alignment(1.0, 0.5),
-                  textStyle: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.06,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
+               
               ],
             ),
           ),
@@ -115,7 +103,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     Row(children: <Widget>[
                       Text(
-                        "Book your appointments",
+                        "Search lost/found items.",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width * 0.06,
@@ -126,7 +114,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     Row(children: <Widget>[
                       Text(
-                        "Manage your appointments",
+                        "Upload lost/found item info.",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width * 0.06,
@@ -137,7 +125,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     Row(children: <Widget>[
                       Text(
-                        "Get your appointments booked",
+                        "Claim found items.",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width * 0.06,

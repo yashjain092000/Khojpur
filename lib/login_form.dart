@@ -11,7 +11,6 @@ class AuthForm extends StatefulWidget {
   final bool isLoading;
 
   final void Function(
-    //String typeUser,
     String email,
     String password,
     BuildContext ctx,
@@ -23,7 +22,6 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
-  //var _typeUser = 'Appointee';
   var _userEmail = '';
   var _userPassword = '';
 
@@ -34,7 +32,6 @@ class _AuthFormState extends State<AuthForm> {
     if (isValid) {
       _formKey.currentState.save();
       widget.submitFn(
-          //_typeUser.trim(), 
           _userEmail.trim(), _userPassword.trim(), context);
     }
   }
@@ -45,16 +42,42 @@ class _AuthFormState extends State<AuthForm> {
       child: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-          TypewriterAnimatedTextKit(
-              speed: Duration(milliseconds: 300),
-              totalRepeatCount: 0,
-              text: ["Welcome Back!"],
-              textStyle: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.1,
-                  fontFamily: "Agne",
-                  fontWeight: FontWeight.w500),
-              textAlign: TextAlign.start,
-              alignment: AlignmentDirectional.topStart),
+
+          Text("welcome...."),
+//           SizedBox(
+//   width: 250.0,
+//   child: ScaleAnimatedTextKit(
+//     onTap: () {
+//         print("Tap Event");
+//       },
+//     text: [
+//       "Think",
+//       "Build",
+//       "Ship"
+//       ],
+//     textStyle: TextStyle(
+//         fontSize: 70.0,
+//         fontFamily: "Canterbury"
+//     ),
+//     textAlign: TextAlign.start,
+//   ),
+// ),
+SizedBox(
+  width: 250.0,
+  child: TypewriterAnimatedTextKit(
+    onTap: () {
+        print("Tap Event");
+      },
+    text: [
+      "welcome",
+    ],
+    textStyle: TextStyle(
+        fontSize: 30.0,
+        fontFamily: "Agne"
+    ),
+    textAlign: TextAlign.start,
+  ),
+),
           SizedBox(height: MediaQuery.of(context).size.height * 0.07),
           Center(
             child: Card(

@@ -13,7 +13,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var _isLoading = false;
   void _submitAuthForm(
-   // String typeUser,
     String email,
     String password,
     BuildContext ctx,
