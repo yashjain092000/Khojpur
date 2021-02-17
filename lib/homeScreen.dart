@@ -18,8 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
         new ItemHiddenMenu(
           name: "🏛️ Home",
           baseStyle:
-              TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 28.0),
-          colorLineSelected: Colors.white,
+              TextStyle(color: Colors.black, fontSize: 28.0),
+              selectedStyle: TextStyle(color: Colors.green[800], fontSize: 28.0),
+          colorLineSelected: Colors.black,
         ),
         WelcomeScreen()));
 
@@ -27,16 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
         new ItemHiddenMenu(
           name: "👤 Login",
           baseStyle:
-              TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 28.0),
-          colorLineSelected: Colors.white,
+              TextStyle(color: Colors.black, fontSize: 28.0),
+                selectedStyle: TextStyle(color: Colors.green[800], fontSize: 28.0),
+          colorLineSelected: Colors.black,
         ),
         LoginScreen()));
     items.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
           name: "👥 Signup",
           baseStyle:
-              TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 28.0),
-          colorLineSelected: Colors.white,
+              TextStyle(color: Colors.black, fontSize: 28.0),
+                selectedStyle: TextStyle(color: Colors.green[800], fontSize: 28.0),
+          colorLineSelected: Colors.black,
         ),
         SignupScreen()));
 
@@ -47,8 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return HiddenDrawerMenu(
       elevationAppBar: 20.0,
-      backgroundColorMenu: Colors.deepPurple,
-      backgroundColorAppBar: Colors.deepPurple,
+      backgroundColorMenu: Colors.amberAccent[400],
+      backgroundColorAppBar: Colors.green[800],
       screens: items,
     );
   }
