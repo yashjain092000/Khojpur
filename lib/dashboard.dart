@@ -211,8 +211,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                             width: 100,
                                             child: Card(
                                               child: CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    abc[index].image),
+                                                backgroundImage: null,
                                               ),
                                             ),
                                           ),
@@ -241,77 +240,6 @@ class _DashboardPageState extends State<DashboardPage> {
                                                           .toString()
                                                     })),
                                           ),
-                                          FlatButton(
-                                              onPressed: () {
-                                                showModalBottomSheet(
-                                                    context: context,
-                                                    builder: (_) {
-                                                      return StreamBuilder(
-                                                          stream: Firestore
-                                                              .instance
-                                                              .collection(
-                                                                  'claim_requests')
-                                                              .snapshots(),
-                                                          builder: (ctx,
-                                                              streamSnapshot) {
-                                                            if (streamSnapshot
-                                                                    .connectionState ==
-                                                                ConnectionState
-                                                                    .waiting) {
-                                                              return Center(
-                                                                child:
-                                                                    CircularProgressIndicator(),
-                                                              );
-                                                            }
-                                                            final doc =
-                                                                streamSnapshot
-                                                                    .data
-                                                                    .documents;
-                                                            List<String> c = [];
-                                                            for (int i = 0;
-                                                                i < doc.length;
-                                                                i++) {
-                                                              if (doc[i]["itemName"].compareTo(abc[index].itemName) == 0 &&
-                                                                  doc[i]["item"].compareTo(
-                                                                          abc[index]
-                                                                              .item) ==
-                                                                      0 &&
-                                                                  doc[i]["place"]
-                                                                          .compareTo(
-                                                                              abc[index].place) ==
-                                                                      0) {
-                                                                c.add(doc[i][
-                                                                    "user_email"]);
-                                                              }
-                                                            }
-                                                            return ListView
-                                                                .builder(
-                                                                    itemCount: c
-                                                                        .length,
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                            indexA) {
-                                                                      return ListTile(
-                                                                        title: Text(
-                                                                            c[indexA]),
-                                                                        trailing: FlatButton(
-                                                                            onPressed: () {
-                                                                              Firestore.instance.collection("claimed_items").document().setData({
-                                                                                "itemName": abc[index].itemName,
-                                                                                "item": abc[index].item,
-                                                                                "place": abc[index].place,
-                                                                                "user_claimed": c[indexA],
-                                                                                "date": DateTime.now().toString()
-                                                                              });
-                                                                              Firestore.instance.collection("found_reports").document(abc[index].id).delete();
-                                                                            },
-                                                                            child: Text("give_claim")),
-                                                                      );
-                                                                    });
-                                                          });
-                                                    });
-                                              },
-                                              child: Text("who claimed"))
                                         ],
                                       ),
                                     ),
