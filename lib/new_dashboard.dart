@@ -9,7 +9,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'item.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-
 List<DropdownMenuItem<String>> _dropDownItem() {
   List<String> ddl = ["item_1", 'item_2', 'item_3'];
   return ddl
@@ -349,38 +348,33 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
                           }),
                     ),
                   ),
-                 Divider( color:Colors.grey, thickness: 1.0),
-
-                   SizedBox(
-  width: 250.0,
-  child: Center(
-    child: ColorizeAnimatedTextKit(
-      text: [
-        "Lost Items Info",
-        "Lost Items Info",
-        "Lost Items Info",
-      ],
-      textStyle: TextStyle(
-          fontSize: 30.0,
-          fontFamily: "Horizon"
-      ),
-      colors: [
-        Colors.purple,
-        Colors.blue,
-        Colors.yellow,
-        Colors.red,
-        Colors.green,
-      ],
-      textAlign: TextAlign.start,
-    ),
-  ),
-),
-   Divider( color:Colors.grey, thickness: 1.0),
-
+                  Divider(color: Colors.grey, thickness: 1.0),
+                  SizedBox(
+                    width: 250.0,
+                    child: Center(
+                      child: ColorizeAnimatedTextKit(
+                        text: [
+                          "Lost Items Info",
+                          "Lost Items Info",
+                          "Lost Items Info",
+                        ],
+                        textStyle:
+                            TextStyle(fontSize: 30.0, fontFamily: "Horizon"),
+                        colors: [
+                          Colors.purple,
+                          Colors.blue,
+                          Colors.yellow,
+                          Colors.red,
+                          Colors.green,
+                        ],
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ),
+                  Divider(color: Colors.grey, thickness: 1.0),
                   SizedBox(
                     height: 16,
                   ),
-                 
                   Center(
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.4,
@@ -443,15 +437,6 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
                 SizedBox(height: 20.0),
               ],
             ),
-          ),
-          LListItem(
-            backgroundColor: Colors.transparent,
-            onTap: () {},
-            leading:
-                Icon(Icons.account_circle, size: 20.0, color: Colors.white),
-            title: Text("Profile"),
-            textColor: Colors.white,
-            dense: true,
           ),
           LListItem(
             backgroundColor: Colors.transparent,

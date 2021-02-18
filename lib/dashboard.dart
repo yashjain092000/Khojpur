@@ -7,6 +7,7 @@ import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'item.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
 List<DropdownMenuItem<String>> _dropDownItem() {
   List<String> ddl = ["item_1", 'item_2', 'item_3'];
   return ddl
@@ -54,6 +55,7 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  String _username = "";
   String _selectedPlace = "";
   String _selectedItem = "";
   String currentMail = "";
@@ -68,9 +70,25 @@ class _DashboardPageState extends State<DashboardPage> {
     });
   }
 
+  getUserName() async {
+    await Firestore.instance
+        .collection("users")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      for (int i = 0; i < snapshot.documents.length; i++) {
+        if (snapshot.documents[i]['email'].compareTo(currentMail) == 0) {
+          setState(() {
+            _username = snapshot.documents[i]['username'];
+          });
+        }
+      }
+    });
+  }
+
   void initState() {
     super.initState();
     getCurrentUserMail();
+    getUserName();
   }
 
   @override
@@ -248,38 +266,33 @@ class _DashboardPageState extends State<DashboardPage> {
                           }),
                     ),
                   ),
-                  Divider( color:Colors.grey, thickness: 1.0),
-
-                   SizedBox(
-  width: 250.0,
-  child: Center(
-    child: ColorizeAnimatedTextKit(
-      text: [
-        "Lost Items Info",
-        "Lost Items Info",
-        "Lost Items Info",
-      ],
-      textStyle: TextStyle(
-          fontSize: 30.0,
-          fontFamily: "Horizon"
-      ),
-      colors: [
-        Colors.purple,
-        Colors.blue,
-        Colors.yellow,
-        Colors.red,
-        Colors.green,
-      ],
-      textAlign: TextAlign.start,
-    ),
-  ),
-),
-   Divider( color:Colors.grey, thickness: 1.0),
-
+                  Divider(color: Colors.grey, thickness: 1.0),
+                  SizedBox(
+                    width: 250.0,
+                    child: Center(
+                      child: ColorizeAnimatedTextKit(
+                        text: [
+                          "Lost Items Info",
+                          "Lost Items Info",
+                          "Lost Items Info",
+                        ],
+                        textStyle:
+                            TextStyle(fontSize: 30.0, fontFamily: "Horizon"),
+                        colors: [
+                          Colors.purple,
+                          Colors.blue,
+                          Colors.yellow,
+                          Colors.red,
+                          Colors.green,
+                        ],
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ),
+                  Divider(color: Colors.grey, thickness: 1.0),
                   SizedBox(
                     height: 16,
                   ),
-                 
                   Center(
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.4,
@@ -336,21 +349,12 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 SizedBox(height: 16.0),
                 LText(
-                  "\l.lead{Hello}",
+                  "\l.lead{Hello} + $_username",
                   baseStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 20.0),
               ],
             ),
-          ),
-          LListItem(
-            backgroundColor: Colors.transparent,
-            
-            leading:
-                Icon(Icons.account_circle, size: 20.0, color: Colors.white),
-            title: Text("Profile"),
-            textColor: Colors.white,
-            dense: true,
           ),
           LListItem(
             backgroundColor: Colors.transparent,
