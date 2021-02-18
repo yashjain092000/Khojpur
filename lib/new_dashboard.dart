@@ -60,6 +60,7 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
   String _selectedPlace = "";
   String _selectedItem = "";
   String currentMail = "";
+  String _newPassword = "";
   //int _counter = 0;
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   final GlobalKey<SideMenuState> _endSideMenuKey = GlobalKey<SideMenuState>();
@@ -85,6 +86,32 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
         }
       }
     });
+  }
+
+  void _changePassword(String password, BuildContext context) async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    if (password.length < 7) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "password length should at least be 7",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.deepPurple,
+        ),
+      );
+    } else {
+      user.updatePassword(password);
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "password updated",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.deepPurple,
+        ),
+      );
+    }
   }
 
   void initState() {
@@ -138,10 +165,58 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
                       ),
                       value: 'logout',
                     ),
+                    DropdownMenuItem(
+                      child: Container(
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.account_circle_outlined),
+                            SizedBox(width: 8),
+                            Text('Reset Password'),
+                          ],
+                        ),
+                      ),
+                      value: 'reset',
+                    )
                   ],
                   onChanged: (itemIdentifier) {
                     if (itemIdentifier == 'logout') {
                       FirebaseAuth.instance.signOut();
+                    }
+                    if (itemIdentifier == 'reset') {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (_) {
+                            return Column(
+                              children: <Widget>[
+                                TextField(
+                                  decoration: InputDecoration(
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurple),
+                                      ),
+                                      labelText: 'Password',
+                                      labelStyle:
+                                          TextStyle(color: Colors.grey[500])),
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _newPassword = value;
+                                    });
+                                  },
+                                ),
+                                SizedBox(height: 12),
+                                RaisedButton(
+                                  elevation: 6.0,
+                                  color: Colors.deepPurple,
+                                  textColor: Colors.white,
+                                  child: Text('update password'),
+                                  onPressed: () {
+                                    _changePassword(_newPassword, context);
+                                  },
+                                )
+                              ],
+                            );
+                          });
                     }
                   },
                 ),
