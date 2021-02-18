@@ -48,7 +48,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           Padding(
             padding: EdgeInsets.only(top: 50, bottom: 10, left: 10, right: 10),
             child: Row(
-             
               children: <Widget>[
                 Hero(
                   tag: 'logo',
@@ -60,23 +59,21 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     ),
                   ),
                 ),
-                        SizedBox(
-              width: 140.0,
-                child: ScaleAnimatedTextKit(
-                text: [
-                        "KHOJPUR",
-                        "KHOJPUR",
-                        "KHOJPUR",
-                      ],
-          textStyle: TextStyle(
-        fontSize: 31.0,
-        fontFamily: "Agne",
-    ),
-    textAlign: TextAlign.start,
-  ),
-),
-
-               
+                SizedBox(
+                  width: 150.0,
+                  child: ScaleAnimatedTextKit(
+                    text: [
+                      "KHOJPUR",
+                      "KHOJPUR",
+                      "KHOJPUR",
+                    ],
+                    textStyle: TextStyle(
+                      fontSize: 28.0,
+                      fontFamily: "Agne",
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
+                ),
               ],
             ),
           ),
