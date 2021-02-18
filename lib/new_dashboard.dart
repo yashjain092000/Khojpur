@@ -40,7 +40,7 @@ class NewDashboard extends StatelessWidget {
           primarySwatch: Colors.green,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: NewDashboardPage(title: 'NewDashboard'),
+        home: NewDashboardPage(title: 'Master Dashboard'),
       ),
     );
   }
@@ -431,7 +431,7 @@ class _NewDashboardPageState extends State<NewDashboardPage> {
                 ),
                 SizedBox(height: 16.0),
                 LText(
-                  "hello " + _username,
+                  "Hello " + _username,
                   baseStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 20.0),
